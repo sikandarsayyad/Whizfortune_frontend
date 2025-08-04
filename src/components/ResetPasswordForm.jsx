@@ -27,7 +27,7 @@ const ResetPasswordForm = () => {
     try {
       const res = await axios.post('https://new-backend-lake.vercel.app/api/auth/reset-password', {
         token,
-        newPassword: password,
+        password,
       });
 
       setMessage(res.data.message || 'Password reset successful!');
