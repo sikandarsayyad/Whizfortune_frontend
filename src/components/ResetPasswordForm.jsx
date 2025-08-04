@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-const searchParams = new URLSearchParams(location.search);
-const token = searchParams.get('token');
 
 const ResetPasswordForm = () => {
-  const { token } = useParams(); // extract token from URL
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [token, setToken] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const t = searchParams.get('token');
+    if (t) {
+      setToken(t);
+    } else {
+      setError('Token not found in URL!');
+    }
+  }, [location]);
 
   const handleReset = async (e) => {
     e.preventDefault();
