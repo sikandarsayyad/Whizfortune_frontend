@@ -1,0 +1,136 @@
+/* login.css */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, white, #e0f0ff);
+}
+
+/* 💥 Center the login card */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Login card box */
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 360px;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #e2b600;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Label text */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #0e0d0d;
+}
+
+/* Input fields */
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;  /* ✅ white background */
+  color: black;             /* ✅ black text */
+  font-size: 14px;
+}
+
+/* Placeholder text style */
+form input::placeholder {
+  color: #888;
+}
+
+/* Button style */
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #e2b600;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/* Footer text */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  margin-top: 20px;
+}
+.forgot-password {
+  width: 100%;
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.forgot-password a {
+  font-size: 13px;
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+.reset-link {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+}
+/* Minimizing blur effect */
+.login-card.minimized {
+  opacity: 0.3;
+  filter: blur(2px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Optional: improve button appearance */
+.reset-link {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+}
