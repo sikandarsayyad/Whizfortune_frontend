@@ -36,7 +36,7 @@ const ForgotPasswordForm = () => {
     >
       <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Forgot Password</h2>
       <form onSubmit={handleSubmit}>
-        <label style={{ display: 'block', marginBottom: '8px' }}>Email Address</label>
+        <label style={{ display: 'block',textAlign: 'left', marginBottom: '8px' }}>Email Address</label>
         <input
           type="email"
           placeholder="Enter your email"

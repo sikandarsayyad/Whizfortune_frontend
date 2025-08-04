@@ -63,7 +63,7 @@ const ResetPasswordForm = () => {
       }}>
         <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Reset Password</h2>
         <form onSubmit={handleReset}>
-          <label style={{ display: 'block', marginBottom: '5px' }}>New Password</label>
+          <label style={{ display: 'block', textAlign: 'left', marginBottom: '5px' }}>New Password</label>
           <input
             type="password"
             value={password}
@@ -78,7 +78,7 @@ const ResetPasswordForm = () => {
             }}
           />
 
-          <label style={{ display: 'block', marginBottom: '5px' }}>Confirm Password</label>
+          <label style={{ display: 'block', textAlign: 'left', marginBottom: '5px' }}>Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
