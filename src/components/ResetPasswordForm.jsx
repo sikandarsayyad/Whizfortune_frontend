@@ -10,11 +10,6 @@ const ResetPasswordForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
-
-
-
-
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -36,7 +31,7 @@ const ResetPasswordForm = () => {
       });
 
       setMessage(res.data.message || 'Password reset successful!');
-      setTimeout(() => navigate('/login'), 2000); // redirect after success
+      setTimeout(() => navigate('/login'), 2000); 
     } catch (err) {
       const msg = err.response?.data?.message || 'Reset failed!';
       setError(msg);
