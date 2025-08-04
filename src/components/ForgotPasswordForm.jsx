@@ -12,9 +12,12 @@ const ForgotPasswordForm = () => {
     setError('');
 
     try {
-      const res = await axios.post('https://new-backend-lake.vercel.app/api/auth/forgot-password', { email });
+      const res = await axios.post(
+        'https://new-backend-lake.vercel.app/api/auth/forgot-password',
+        { email }
+      );
       setMessage(res.data.message || 'Reset link sent to your email.');
-      console.log(res.data)
+      console.log(res.data);
     } catch (err) {
       const msg = err.response?.data?.message || 'Something went wrong!';
       setError(msg);
@@ -34,11 +37,26 @@ const ForgotPasswordForm = () => {
         fontFamily: 'Arial',
       }}
     >
-      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Forgot Password</h2>
+      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
+        Forgot Password
+      </h2>
       <form onSubmit={handleSubmit}>
-        <label style={{ display: 'block',textAlign: 'left', marginBottom: '8px' }}>Email Address</label>
+        <label
+          htmlFor="email"
+          style={{
+            display: 'block',
+            textAlign: 'left',
+            marginBottom: '8px',
+            fontWeight: 'bold',
+          }}
+        >
+          Email Address
+        </label>
         <input
+          id="email"
+          name="email"
           type="email"
+          autoComplete="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -70,8 +88,16 @@ const ForgotPasswordForm = () => {
         </button>
       </form>
 
-      {message && <p style={{ color: 'green', marginTop: '15px' }}>{message}</p>}
-      {error && <p style={{ color: 'red', marginTop: '15px' }}>{error}</p>}
+      {message && (
+        <p style={{ color: 'green', marginTop: '15px', fontSize: '14px' }}>
+          {message}
+        </p>
+      )}
+      {error && (
+        <p style={{ color: 'red', marginTop: '15px', fontSize: '14px' }}>
+          {error}
+        </p>
+      )}
     </div>
   );
 };

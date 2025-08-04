@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import loginlogo from '../assets/images/login.png'; 
+import loginlogo from '../assets/images/login.png';
 import { useUser } from '../context/userContext';
 
 const Login = () => {
-  const { setUser, setIsLogin } = useUser(); // get context setters
+  const { setUser, setIsLogin } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,16 +16,14 @@ const Login = () => {
     setError('');
 
     try {
-      // Step 1: Login & get token
       const res = await axios.post('https://new-backend-lake.vercel.app/api/auth/signin', {
         email,
         password,
       });
 
       const token = res.data.token;
-      localStorage.setItem('token', token); // Save token
+      localStorage.setItem('token', token);
 
-      // Step 2: Fetch user info with token
       const userRes = await axios.post(
         'https://new-backend-lake.vercel.app/api/auth/get-user-data',
         {},
@@ -37,14 +35,14 @@ const Login = () => {
       );
 
       if (userRes.data.success) {
-        setUser(userRes.data.data); // update context
+        setUser(userRes.data.data);
         setIsLogin(true);
-        navigate('/dashboard'); //Redirect
+        navigate('/dashboard');
       } else {
-        setError('User data fetch failed');
+        setError('Failed to fetch user data');
       }
     } catch (err) {
-      const msg = err.response?.data?.message || 'Login failed!';
+      const msg = err.response?.data?.message || 'Login failed';
       setError(msg);
     }
   };
@@ -69,13 +67,8 @@ const Login = () => {
           width: '360px',
         }}
       >
-        {/*  LOGO SECTION */}
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <img
-            src={loginlogo}
-            alt="Login Logo"
-            style={{ height: '60px', marginBottom: '10px' }}
-          />
+          <img src={loginlogo} alt="Login Logo" style={{ height: '60px', marginBottom: '10px' }} />
           <p style={{ color: '#e2b600', fontWeight: 600, fontSize: '14px' }}>
             FOR SECURITY TRAINING LLC
           </p>
@@ -90,6 +83,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="email"
             style={inputStyle}
           />
 
@@ -101,6 +95,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
             style={inputStyle}
           />
 
@@ -132,7 +127,6 @@ const Login = () => {
   );
 };
 
-// Reusable inline styles
 const labelStyle = {
   display: 'block',
   marginBottom: '5px',

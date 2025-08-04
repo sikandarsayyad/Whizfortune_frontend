@@ -38,7 +38,7 @@ const ResetPasswordForm = () => {
       });
 
       setMessage(res.data.message || 'Password reset successful!');
-      setTimeout(() => navigate('/login'), 2000); 
+      setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
       const msg = err.response?.data?.message || 'Reset failed!';
       setError(msg);
@@ -62,10 +62,14 @@ const ResetPasswordForm = () => {
         boxShadow: '0 0 15px rgba(0,0,0,0.1)'
       }}>
         <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Reset Password</h2>
-        <form onSubmit={handleReset}>
-          <label style={{ display: 'block', textAlign: 'left', marginBottom: '5px' }}>New Password</label>
+        <form onSubmit={handleReset} autoComplete="on">
+          <label style={{ display: 'block', textAlign: 'left', marginBottom: '5px' }}>
+            New Password
+          </label>
           <input
             type="password"
+            name="new-password"
+            autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -78,9 +82,13 @@ const ResetPasswordForm = () => {
             }}
           />
 
-          <label style={{ display: 'block', textAlign: 'left', marginBottom: '5px' }}>Confirm Password</label>
+          <label style={{ display: 'block', textAlign: 'left', marginBottom: '5px' }}>
+            Confirm Password
+          </label>
           <input
             type="password"
+            name="confirm-password"
+            autoComplete="new-password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
