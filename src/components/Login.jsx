@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import loginlogo from '../assets/images/login.png'; // adjust the path if needed
+import loginlogo from '../assets/images/login.png'; 
+import { useUser } from '../context/userContext';
 
 const Login = () => {
+  const { setUser, setIsLogin } = useUser(); // get context setters
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,17 +16,36 @@ const Login = () => {
     setError('');
 
     try {
+      // Step 1: Login & get token
       const res = await axios.post('https://new-backend-lake.vercel.app/api/auth/signin', {
         email,
         password,
       });
 
-      localStorage.setItem('token', res.data.token);
-      navigate('/dashboard');
+      const token = res.data.token;
+      localStorage.setItem('token', token); // Save token
+
+      // Step 2: Fetch user info with token
+      const userRes = await axios.post(
+        'https://new-backend-lake.vercel.app/api/auth/get-user-data',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (userRes.data.success) {
+        setUser(userRes.data.data); // update context
+        setIsLogin(true);
+        navigate('/dashboard'); //Redirect
+      } else {
+        setError('User data fetch failed');
+      }
     } catch (err) {
       const msg = err.response?.data?.message || 'Login failed!';
       setError(msg);
-      console.error('Login error:', msg);
     }
   };
 
